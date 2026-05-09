@@ -1,0 +1,727 @@
+---
+title: 苏轼与苏辙：千年兄弟情的传奇
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>苏轼与苏辙：千年兄弟情的传奇</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        /* 头部横幅 */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .header h1 {
+            color: #fff;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2em;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .quote {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.1em;
+            margin-top: 20px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 内容区域 */
+        .content {
+            padding: 40px 35px;
+        }
+        
+        /* 章节标题 */
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin: 40px 0 25px 0;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .section-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .section-title h2 {
+            color: #333;
+            font-size: 1.6em;
+            font-weight: 600;
+        }
+        
+        /* 段落样式 */
+        .paragraph {
+            margin-bottom: 25px;
+            line-height: 2;
+            color: #444;
+            font-size: 1.05em;
+            text-align: justify;
+        }
+        
+        /* 引用框 */
+        .quote-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 5px solid #667eea;
+            padding: 25px 30px;
+            margin: 30px 0;
+            border-radius: 0 15px 15px 0;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-size: 4em;
+            color: #667eea;
+            opacity: 0.3;
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            font-family: Georgia, serif;
+        }
+        
+        .quote-box p {
+            color: #555;
+            font-size: 1.1em;
+            line-height: 1.8;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quote-box .source {
+            text-align: right;
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 10px;
+            font-style: normal;
+        }
+        
+        /* 时间线 */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 30px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 25px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: #fff;
+            border: 4px solid #667eea;
+            border-radius: 50%;
+        }
+        
+        .timeline-year {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-content {
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        /* 人物卡片 */
+        .character-card {
+            display: flex;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+        }
+        
+        .character-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 2em;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .character-info h3 {
+            color: #333;
+            font-size: 1.3em;
+            margin-bottom: 8px;
+        }
+        
+        .character-info p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.95em;
+        }
+        
+        /* 高亮文字 */
+        .highlight {
+            background: linear-gradient(180deg, transparent 60%, #ffe082 60%);
+            padding: 0 3px;
+        }
+        
+        /* 列表样式 */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .feature-list li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            color: #555;
+            line-height: 1.8;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 1.2em;
+        }
+        
+        /* 诗词展示 */
+        .poem-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .poem-box h4 {
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        
+        .poem-content {
+            color: #444;
+            font-size: 1.15em;
+            line-height: 2.2;
+            font-family: "STKaiti", "KaiTi", "SimKaiti", serif;
+        }
+        
+        /* 结尾 */
+        .ending {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 40px 35px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .ending h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        
+        .ending p {
+            font-size: 1.1em;
+            line-height: 2;
+            opacity: 0.95;
+        }
+        
+        /* 分隔线 */
+        .divider {
+            text-align: center;
+            margin: 40px 0;
+            color: #ccc;
+            font-size: 1.5em;
+            letter-spacing: 10px;
+        }
+        
+        /* 小标签 */
+        .tag {
+            display: inline-block;
+            background: #667eea;
+            color: #fff;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-right: 8px;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 25px 20px;
+            }
+            
+            .character-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .character-avatar {
+                margin: 0 auto 15px auto;
+            }
+            
+            .section-title {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .section-number {
+                margin: 0 auto 10px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <h1>苏轼与苏辙</h1>
+            <p class="subtitle">千年兄弟情的传奇</p>
+            <p class="quote">"与君世世为兄弟，更结来生未了因"</p>
+        </div>
+        
+        <!-- 内容区 -->
+        <div class="content">
+            <!-- 开篇 -->
+            <p class="paragraph">
+                在中国文学史上，有这样一对兄弟，他们的名字永远镌刻在唐宋八大家的丰碑之上。哥哥<span class="highlight">苏轼</span>，字子瞻，号东坡居士，是北宋最耀眼的文学巨星；弟弟<span class="highlight">苏辙</span>，字子由，官至副宰相，是沉稳内敛的政治家。他们相差两岁，却携手走过了一生中最跌宕起伏的岁月。
+            </p>
+            
+            <div class="quote-box">
+                <p>苏轼和苏辙谁更厉害？这个问题本身就错了。他们从来不是竞争对手，而是彼此生命中最坚实的依靠。</p>
+            </div>
+            
+            <div class="divider">* * *</div>
+            
+            <!-- 第一章 -->
+            <div class="section-title">
+                <div class="section-number">壹</div>
+                <h2>名字里的深意</h2>
+            </div>
+            
+            <p class="paragraph">
+                公元1037年1月8日，苏轼出生。两年后的1039年3月18日，苏辙降临人世。他们的父亲苏洵，一位大器晚成的文学家，为两个儿子取了意味深长的名字。
+            </p>
+            
+            <div class="character-card">
+                <div class="character-avatar">轼</div>
+                <div class="character-info">
+                    <h3>苏轼 · 字子瞻</h3>
+                    <p><strong>"轼"</strong>是古代马车前方的横木，看似没什么作用，但去掉它，整个车就不完整。父亲担心苏轼不懂得隐藏锋芒，希望他能学会收敛自己。<strong>"子瞻"</strong>意为扶着把手向远处眺望，凡事多看多想，三思而后行。</p>
+                </div>
+            </div>
+            
+            <div class="character-card">
+                <div class="character-avatar">辙</div>
+                <div class="character-info">
+                    <h3>苏辙 · 字子由</h3>
+                    <p><strong>"辙"</strong>是马车留下的车轮印，一旦车毁人亡，车轮印却可以免于灾祸。苏辙性格内敛，父亲希望他<strong>"由"</strong>着心来，放心大胆地往前走，在取得成就的同时，又能免于灾祸。</p>
+                </div>
+            </div>
+            
+            <p class="paragraph">
+                知子莫若父。苏洵对两个儿子的定位精准得令人叹服——一个光芒四射却需懂得收敛，一个沉稳内敛却能明哲保身。后来的历史证明，这位老父亲的预判分毫不差。
+            </p>
+            
+            <div class="divider">* * *</div>
+            
+            <!-- 第二章 -->
+            <div class="section-title">
+                <div class="section-number">贰</div>
+                <h2>少年成名 同登进士</h2>
+            </div>
+            
+            <p class="paragraph">
+                1056年，年仅19岁的苏轼和17岁的苏辙，在父亲苏洵的带领下，踏上了前往京城参加科举考试的漫漫征途。这是兄弟俩第一次远离家乡，也是他们辉煌人生的起点。
+            </p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1056年 · 科举及第</div>
+                    <div class="timeline-content">兄弟俩双双考中进士，相当于今天的博士学位。主考官欧阳修对苏轼的文章给予了极高的评价，称其"他日文章必独步天下"。苏轼自此名声大噪，震动京师。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1061年 · 制科考试</div>
+                    <div class="timeline-content">通过欧阳修推荐，兄弟俩参加最高级别的制科考试，再次同时被录取。苏轼获得第三等，被称为"百年第一人"，被皇帝亲自看见，开启了仕途之路。</div>
+                </div>
+            </div>
+            
+            <p class="paragraph">
+                当朝大臣张方平曾这样评价两兄弟："哥哥性格开朗，将来一定是人见人爱；弟弟性格严谨，将来的成就或许比哥哥还高。"后来的发展，果然如他所言。
+            </p>
+            
+            <div class="quote-box">
+                <p>上任的第一天，想弟弟；路过同游的地方，想弟弟；想到离弟弟这么远，想弟弟……</p>
+                <p class="source">—— 苏轼给苏辙的信</p>
+            </div>
+            
+            <p class="paragraph">
+                从踏入仕途的第一天起，苏轼就开始了给弟弟写信的"日常"。出差写信，放假游玩也写信，实在不过瘾，就直接画亭台池院给弟弟分享。他在信中发出感慨：天下谁也没有他弟弟好。
+            </p>
+            
+            <div class="divider">* * *</div>
+            
+            <!-- 第三章 -->
+            <div class="section-title">
+                <div class="section-number">叁</div>
+                <h2>乌台诗案 生死与共</h2>
+            </div>
+            
+            <p class="paragraph">
+                1066年，父亲苏洵去世。两兄弟守孝三年后回到朝廷，却正值王安石推行变法。由于对变法持有异议，兄弟俩双双被贬离京。1076年中秋，已经七年没有团聚的苏轼，望着明月写下了那首传唱千古的《水调歌头》：
+            </p>
+            
+            <div class="poem-box">
+                <h4>水调歌头 · 明月几时有</h4>
+                <div class="poem-content">
+                    但愿人长久，千里共婵娟。
+                </div>
+            </div>
+            
+            <p class="paragraph">
+                四年后，苏辙写下《逍遥堂会宿》，回忆与哥哥从小一起读书、没有一天分开的日子。他们相约：老了要住在一起，<span class="highlight">"安知风雨夜，复此对床眠"</span>。
+            </p>
+            
+            <div class="quote-box">
+                <p>1079年，苏轼被调任时给皇帝写了一封感谢信，却因言语中嘲讽新政而触怒龙颜。皇帝下令对其诗作进行全面调查，酿成了著名的"乌台诗案"。</p>
+            </div>
+            
+            <p class="paragraph">
+                哥哥进了大牢，眼看性命不保。在狱中，苏轼给弟弟写下绝命诗：
+            </p>
+            
+            <div class="poem-box">
+                <h4>狱中寄子由</h4>
+                <div class="poem-content">
+                    与君世世为兄弟，<br>
+                    更结来生未了因。
+                </div>
+            </div>
+            
+            <p class="paragraph">
+                意思是：自己死了不要紧，随便找个地方埋了就是。但想到之前和弟弟的约定，以后怕是只能留弟弟一个人悲伤了，希望来生还能做兄弟，再续这份情谊。
+            </p>
+            
+            <p class="paragraph">
+                而苏辙这边，心痛不已。他请求用自己的官职为哥哥赎罪——这是何等的兄弟情深！最终，被囚禁了130天的苏轼出狱了，小命算是保住，但兄弟俩再次双双被贬。
+            </p>
+            
+            <div class="divider">* * *</div>
+            
+            <!-- 第四章 -->
+            <div class="section-title">
+                <div class="section-number">肆</div>
+                <h2>黄岁月 患难真情</h2>
+            </div>
+            
+            <p class="paragraph">
+                1080年，苏轼来到被贬之地黄州。这里的日子贫苦不堪，但苏轼以他特有的豁达，在逆境中活出了诗意。
+            </p>
+            
+            <ul class="feature-list">
+                <li><strong>东坡居士的由来：</strong>第二年，为了不饿肚子，苏轼在东坡外的山坡上种了十亩地，从此自称"东坡居士"。</li>
+                <li><strong>东坡肉的发明：</strong>第三年，为了省钱，他发明了著名的东坡肉。在明朝之前，猪肉被视为贱肉，非常便宜，这让贫困中的苏轼也能吃上肉。</li>
+                <li><strong>文学创作的高峰：</strong>这四年间，苏轼留下了100多首诗，占他一生作品的四分之一。正是这段被贬的岁月，成就了他文学创作的巅峰。</li>
+            </ul>
+            
+            <p class="paragraph">
+                在这四年里，兄弟俩来往信件频繁。苏辙叮嘱哥哥照顾身体、少喝酒；苏轼则告诉弟弟：不高兴了，大不了就不干了，来找我，咱们一起安家听雨。
+            </p>
+            
+            <div class="divider">* * *</div>
+            
+            <!-- 第五章 -->
+            <div class="section-title">
+                <div class="section-number">伍</div>
+                <h2>仕途分野 守护之情</h2>
+            </div>
+            
+            <p class="paragraph">
+                1085年，高太后上台打压王安石变法，苏轼、苏辙再次被启用，兄弟俩总算在京师重逢。然而好景不长——苏轼在被贬期间认识到王安石变法的某些好处，开始攻击高太后欣赏的司马光，于是又一次被贬。
+            </p>
+            
+            <p class="paragraph">
+                这一次，两兄弟的仕途出现了分野：
+            </p>
+            
+            <div class="character-card">
+                <div class="character-avatar">轼</div>
+                <div class="character-info">
+                    <h3>苏轼 · 造福一方</h3>
+                    <p>在被贬期间，苏轼治理西湖，留下了苏堤春晓、三潭印月等传世美景。他每到一处，都全心投入造福百姓。</p>
+                </div>
+            </div>
+            
+            <div class="character-card">
+                <div class="character-avatar">辙</div>
+                <div class="character-info">
+                    <h3>苏辙 · 位极人臣</h3>
+                    <p>苏辙深得高太后倚重，一路升职加薪，成为位高权重的副宰相。仿佛在用行动告诉哥哥：只有我一直往上爬，才能更好地守护你。</p>
+                </div>
+            </div>
+            
+            <p class="paragraph">
+                1094年，新党再次上台，兄弟俩又双双被贬。57岁的苏轼被贬到广东惠州，苏辙去了江西。即便到了这个年纪，苏轼依然没有破罐子破摔，反而随遇而安，在惠州两年间为当地百姓做了无数好事：
+            </p>
+            
+            <ul class="feature-list">
+                <li><strong>提高农业生产力：</strong>改善当地的插秧模式，提高农作物产量。</li>
+                <li><strong>帮助百姓创收：</strong>建议村民利用溪流落差建造水碓水磨，将檀香、樟木等研成粉销往广州等地。</li>
+                <li><strong>为百姓安全建桥：</strong>建议修建两桥一堤，资金不足时动员弟弟弟媳捐款，这就是后来的"苏公堤"。</li>
+            </ul>
+            
+            <div class="quote-box">
+                <p>就在哥哥忙着造福百姓、没空给弟弟写信的时候，苏辙来信催促："快过年了，哥哥别忘了寄新诗词给我！"</p>
+                <p class="source">—— 苏辙来信</p>
+            </div>
+            
+            <p class="paragraph">
+                苏轼回复："我忙着造福百姓呢，而且我又发明了美食羊蝎子！"——即便在最艰难的时刻，这对兄弟依然保持着乐观与温情。
+            </p>
+            
+            <div class="divider">* * *</div>
+            
+            <!-- 第六章 -->
+            <div class="section-title">
+                <div class="section-number">陆</div>
+                <h2>海南岁月 文化播种</h2>
+            </div>
+            
+            <p class="paragraph">
+                1097年，两兄弟再次被贬。这一次，苏轼被贬到了海南海口——在宋朝，放逐海南是比满门抄斩罪轻一等的处罚。1000年前的海南，是"中原人去海南，十去九不还"的荒蛮之地。
+            </p>
+            
+            <p class="paragraph">
+                在前往被贬之地的路上，两兄弟心中都清楚：无论从年龄还是看不到头的被贬之路来看，这都有可能是他们最后在一起的日子了。
+            </p>
+            
+            <p class="paragraph">
+                然而，即便到了海南，生活如此艰难，苏轼却以一己之力给海南带来了文化繁荣：
+            </p>
+            
+            <ul class="feature-list">
+                <li><strong>创办海南第一所学堂：</strong>他带领百姓盖学堂、做老师，把荒蛮之地变成了书声朗朗、弦歌四起的文化中心。不久后，海南就有了第一位进士。</li>
+                <li><strong>发明海南第一块墨：</strong>用树枝烧成灰，混合牛皮胶制成。</li>
+                <li><strong>贡献海南第一个插秧机：</strong>挖了第一口水井，开办了第一家医院，亲自当医生救死扶伤。</li>
+            </ul>
+            
+            <div class="poem-box">
+                <h4>苏轼·诗</h4>
+                <div class="poem-content">
+                    沧海何曾断地脉，<br>
+                    朱崖从此破天荒。
+                </div>
+            </div>
+            
+            <p class="paragraph">
+                一个荒蛮之地完成了科举零突破，这确实称得上是"破天荒"。当地百姓对苏东坡简直是膜拜——他们对帝王将相都没有兴趣，却因为能拥有"我们的苏东坡"而自豪。
+            </p>
+            
+            <p class="paragraph">
+                流传至今的东坡村、东坡井、东坡田、东坡路、东坡桥、东坡帽……都表达了当地人对他的尊敬和缅怀。这就是文化的力量——读的书多、学问多，自然就懂得多，走到哪里都能造福一方。
+            </p>
+            
+            <div class="divider">* * *</div>
+            
+            <!-- 第七章 -->
+            <div class="section-title">
+                <div class="section-number">柒</div>
+                <h2>生死离别 终成永恒</h2>
+            </div>
+            
+            <p class="paragraph">
+                1100年，新皇帝继位，兄弟俩再次被启用。他们非常高兴，因为那个"对床饮酒听雨声"的愿望马上就要实现了。
+            </p>
+            
+            <p class="paragraph">
+                然而，命运弄人。1101年8月24日，苏轼在北归途中重病逝世，享年66岁。
+            </p>
+            
+            <div class="quote-box">
+                <p>唯吾子由，不及一见而绝，死痛难堪。</p>
+                <p class="source">—— 苏轼临终遗言</p>
+            </div>
+            
+            <p class="paragraph">
+                临终前，苏轼遗憾地写下：只有子由，来不及见最后一面就要走了，这种痛苦难以承受。
+            </p>
+            
+            <p class="paragraph">
+                苏辙得知哥哥过世，悲痛不已，为哥哥写下：
+            </p>
+            
+            <div class="quote-box">
+                <p>手足之爱，平生一人。</p>
+                <p class="source">—— 苏辙祭文</p>
+            </div>
+            
+            <p class="paragraph">
+                11年后，苏辙去世，他们葬在了一处。此时，他们终于实现了年少时的约定：
+            </p>
+            
+            <div class="poem-box">
+                <h4>终成现实</h4>
+                <div class="poem-content">
+                    安知风雨夜，<br>
+                    复此对床眠。
+                </div>
+            </div>
+            
+            <div class="divider">* * *</div>
+            
+            <!-- 第八章 -->
+            <div class="section-title">
+                <div class="section-number">捌</div>
+                <h2>千古流芳 兄弟典范</h2>
+            </div>
+            
+            <p class="paragraph">
+                苏辙，唐宋八大家之一，北宋文学家，好丈夫，一生未纳妾。
+            </p>
+            
+            <p class="paragraph">
+                苏轼，唐宋八大家之一，北宋文学家、书法家、画家，光芒万丈的文化巨星。
+            </p>
+            
+            <p class="paragraph">
+                唐宋八大家之中，光他们家就占了三个——还有他们的父亲苏洵。这一家人，是真厉害！
+            </p>
+            
+            <div class="quote-box">
+                <p>论仕途，苏辙的官位高；论对百姓的贡献，苏轼更高。</p>
+                <p>他为人谨慎，他为人洒脱。</p>
+                <p>他喜欢被贬的每一个地方，就连他只待过5天的登州，也有"五天登州府，千年苏公祠"的后话。</p>
+            </div>
+            
+            <p class="paragraph">
+                苏轼不管被贬到哪里，都能活下去，而且可以快乐地活下去。他能享受命运的馈赠，也能承担命运的打击。这两兄弟都在各自擅长的地方发光，做了最好的自己。
+            </p>
+            
+            <p class="paragraph">
+                《宋史》记载了两个人的兄弟情，用了四个字：<span class="highlight">"禁锢罕见"</span>。
+            </p>
+            
+            <p class="paragraph">
+                大家都说"大难临头各自飞"，但他们始终相互扶持，在他们身上没有看到对对方的一点怨言。这是难得的兄弟情谊，是千古传颂的典范。
+            </p>
+        </div>
+        
+        <!-- 结尾 -->
+        <div class="ending">
+            <h3>✦ 尾声 ✦</h3>
+            <p>
+                苏轼与苏辙的故事告诉我们：<br>
+                真正的兄弟，不是比较谁更厉害，<br>
+                而是在彼此的生命中，成为最坚实的依靠。<br><br>
+                愿我们都能拥有这样的情谊，<br>
+                愿天下有情人，都能"但愿人长久，千里共婵娟"。
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+top:
+  - class_name: wechat-card
+    id_name: wechat-qrcode
+    name: 微信联系
+    icon: fab fa-weixin
+    html: |
+      <div style="text-align:center;padding:10px 0;">
+        <img src="/img/1.png" style="width:85%;border-radius:12px;margin:0 auto;display:block;">
+        <p style="margin-top:10px;color:#666;font-size:14px;">扫码关注公众号</p >
+      </div>
