@@ -1,0 +1,20 @@
+- class_name: 友情链接
+  class_desc: 这里的每个站点，都耐人寻味……
+  flink_style: flexcard
+  link_list:
+    - name: 个人主页 
+      link: https://home.z2m.store
+      avatar: https://img.z2m.store/file/public/1778862620159_g.png
+      descr: 读史可以明智,知古方能鉴今。
+    - name: 小鱼钓猫🐱
+      link: https://blog.z2m.store
+      avatar: https://img.z2m.store/file/public/1778862620159_g.png
+      descr: 读史可以明智,知古方能鉴今。
+    - name: 游戏
+      link: https://yzg011.github.io/zigbee/yx/
+      avatar: https://img.z2m.store/file/public/1778862620159_g.png
+      descr: 你比我猜游戏
+    - name: 免费图床
+      link: https://img.z2m.store
+      avatar: https://img.z2m.store/file/public/1778862620159_g.png
+      descr: 永久免费图床

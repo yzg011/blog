@@ -3,18 +3,21 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 历史故事
-subtitle: '读史可以明智,知古方能鉴今'
+title: 个人博客
+subtitle: '读史可以明智,知古方能鉴今。喜欢读历史，一个十几年安防的老安防人，也会分享更多的安防知识'
 description: '读史可以明智,知古方能鉴今'
-keywords:
+keywords: 历史故事 安防监控
 author: Saimen
 language: zh-CN
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://yzg011.github.io/blog
-root: /blog/
+url: https://com.z2m.store
+root: /
+
+# url: https://yzg011.github.io/com
+# root: /com/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -103,17 +106,24 @@ theme: butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repository: git@github.com:yzg011/blog.git
+  repository: git@github.com:yzg011/com.git
   branch: main
 lazyload:
   enable: true
-  loadingImg: /img/loading.gif
+  loadingImg: https://cdn.jsdelivr.net/gh/butterfly-theme/CDN/img/loading/loading2.gif
+  placeholder: true
   
 search:
   path: search.xml
   field: post
   format: html
   limit: 10000
+
+feed:
+  enable: true
+  type: atom
+  path: atom.xml
+  limit: 20
 
 algolia:
   appId: "64JNOOPOO6"

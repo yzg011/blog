@@ -23,15 +23,15 @@ menu:
     分类: /categories/ || fa fa-archive
     标签: /tags/ || fa fa-tags
     归档: /archives/ || fa fa-folder-open
-  # 生活 || fas fa-list:
-  相册: /photos/ || fa fa-camera-retro
+  其他 || fas fa-list:
+    友链: /links/ || fa fa-link
+    留言板: /comment/ || fa fa-paper-plane
+    相册: /album/ || fa fa-camera-retro
     # 音乐: /music/ || fa fa-music
     # 影视: /movies/ || fas fa-video
-  友链: /links/ || fa fa-link
   进入: https://blog.z2m.store/ || fa fa-link
-  留言板: /comment/ || fa fa-paper-plane
   #留言板: /messageboard/ || fa fa-paper-plane
-  关于笔者: /about/ || fas fa-heart  
+  关于: /about/ || fas fa-heart  
 
 
 # --------------------------------------
@@ -105,8 +105,8 @@ footer_img: transparent
 # Website Background
 # Can set it to color, image URL or an array containing colors and/or image URLs
 # If an array is '#efefef'provided, a random background will be selected from the array on each load
-background: false
-  # - /img/2.jpg
+background: /img/bg/3.jpg
+  # - /img/bg/3.jpg
   # - /img/3.jpg
   # - /img/4.jpg
   # - /img/5.jpg
@@ -211,6 +211,11 @@ index_post_content:
   # If you set method to 2 or 3, the length need to config
   length: 500
 
+
+# --------------------------------------
+# 订阅设置
+# --------------------------------------
+rss: /atom.xml
 # --------------------------------------
 # Post Settings
 # --------------------------------------
@@ -554,7 +559,7 @@ comments:
   # Leave it empty if you don't need comments
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/Artalk
   # Format of two comments system : Disqus,Waline
-  use: utterances
+  use: Twikoo
   # Display the comment name next to the button
   text: true
   # Lazyload: The comment system will be load when comment element enters the browser's viewport.
@@ -653,10 +658,10 @@ facebook_comments:
 # Twikoo
 # https://github.com/imaegoo/twikoo
 twikoo:
-  envId:
-  region:
+  envId: https://twikoo.z2m.store/
+  # region:
   # Use Twikoo visitor count as the page view count
-  visitor: false
+  visitor: true
   option:
 
 # Giscus
@@ -693,10 +698,10 @@ artalk:
 chat:
   # Choose: chatra/tidio/crisp
   # Leave it empty if you don't need chat
-  use:
+  use: crisp
   # Chat Button [recommend]
   # It will create a button in the bottom right corner of website, and hide the origin button
-  rightside_button: false
+  rightside_button: true
   # The origin chat button is displayed when scrolling up, and the button is hidden when scrolling down
   button_hide_show: false
 
@@ -710,7 +715,7 @@ tidio:
 
 # https://crisp.chat/en/
 crisp:
-  website_id:
+  website_id: 923dd8fa-e574-49d6-8f8a-d0bb731c6793
 
 # --------------------------------------
 # Analysis
@@ -936,12 +941,11 @@ clickShowText:
 # --------------------------------------
 # Lightbox Settings
 # --------------------------------------
-fancybox: true
 # Choose: fancybox / medium_zoom
 # https://github.com/francoischalifour/medium-zoom
 # https://fancyapps.com/fancybox/
 # Leave it empty if you don't need lightbox
-lightbox:
+lightbox: fancybox
 
 # --------------------------------------
 # Tag Plugins settings
@@ -1095,14 +1099,14 @@ inject:
   head:
 
      # - <link rel="stylesheet" href="/css/background.css">
-     - <style>body{background-size:cover;background-position:center;background-attachment:fixed;}</style>
-     - <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js"></script>
-     # - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'">
+     # - <style>body{background-size:cover;background-position:center;background-attachment:fixed;}</style>
+     # - <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js"></script>
+     # - <link rel="stylesheet" href="/css/custom.css">
      - <link rel="stylesheet" href="/css/transpancy.css">
      # - <link rel="stylesheet" href="/css/theme_card.css">
      # - <script src="/js/baidu.js"></script>
   bottom:
-     - <script>let d=new Date().getDay();let num=d===0?7:d;document.body.style.backgroundImage='url(/img/bg/'+num+'.jpg)';</script>
+     # - <script>let d=new Date().getDay();let num=d===0?7:d;document.body.style.backgroundImage='url(/img/bg/'+num+'.jpg)';</script>
     # - <script src="xxxx"></script>
 
 
