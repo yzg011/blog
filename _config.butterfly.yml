@@ -24,13 +24,13 @@ menu:
     标签: /tags/ || fa fa-tags
     归档: /archives/ || fa fa-folder-open
   其他 || fas fa-list:
-    友链: /links/ || fa fa-link
-    留言板: /comment/ || fa fa-paper-plane
+    友链: /friends/ || fa fa-link
+    # 说说: /talk/ || fas fa-comment-dots
     相册: /album/ || fa fa-camera-retro
     # 音乐: /music/ || fa fa-music
     # 影视: /movies/ || fas fa-video
-  进入: https://blog.z2m.store/ || fa fa-link
-  #留言板: /messageboard/ || fa fa-paper-plane
+  进入: https://blog.z2m.store/ || fa fa-paper-plane
+  朋友圈: /comment/ || fas fa-comment-dots
   关于: /about/ || fas fa-heart  
 
 
@@ -105,7 +105,7 @@ footer_img: transparent
 # Website Background
 # Can set it to color, image URL or an array containing colors and/or image URLs
 # If an array is '#efefef'provided, a random background will be selected from the array on each load
-background: /img/bg/3.jpg
+background: https://img.z2m.store/random?type=img&dir=bg&orientation=auto
   # - /img/bg/3.jpg
   # - /img/3.jpg
   # - /img/4.jpg
@@ -1103,6 +1103,7 @@ inject:
      # - <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js"></script>
      # - <link rel="stylesheet" href="/css/custom.css">
      - <link rel="stylesheet" href="/css/transpancy.css">
+     - <link rel="stylesheet" href="/css/twikoo-talk.css">
      # - <link rel="stylesheet" href="/css/theme_card.css">
      # - <script src="/js/baidu.js"></script>
   bottom:
