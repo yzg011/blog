@@ -25,7 +25,7 @@ menu:
     归档: /archives/ || fa fa-folder-open
   其他 || fas fa-list:
     友链: /friends/ || fa fa-link
-    # 说说: /talk/ || fas fa-comment-dots
+    说说: /talk/ || fas fa-comment-dots
     相册: /album/ || fa fa-camera-retro
     # 音乐: /music/ || fa fa-music
     # 影视: /movies/ || fas fa-video
