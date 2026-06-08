@@ -4,7 +4,6 @@ date: 2025-11-16
 type: "link"
 ---
 
-# 友链交换
 
 
 <style>
@@ -100,68 +99,7 @@ type: "link"
   <div class="friends-card-list" id="friendsList"></div>
 </div>
 
-<script>
-fetch("/friends/friends.json")
-.then(res=>res.json())
-.then(list=>{
-  let html=""
-  list.forEach(item=>{
-    html+=`
-    <a href="${item.url}" target="_blank" class="friend-card">
-      <img class="friend-avatar" src="${item.avatar}" alt="${item.name}">
-      <div class="friend-info">
-        <div class="friend-name">${item.name}</div>
-        <div class="friend-desc">${item.desc}</div>
-      </div>
-    </a>`
-  })
-  document.getElementById("friendsList").innerHTML=html
-})
-</script>
 
-<div class="apply-box">
-  <div class="apply-title">🔗 申请友链</div>
-  <div class="apply-tips">
-    请务必先添加本站友链：<code>https://com.z2m.store</code><br>
-    信息无误后提交，审核通过自动加入友链列表。
-  </div>
-  <form id="friendApplyForm">
-    <div class="apply-form-item">
-      <label>站点名称</label>
-      <input type="text" name="name" required placeholder="你的站点名称">
-    </div>
-    <div class="apply-form-item">
-      <label>网站地址</label>
-      <input type="url" name="url" required placeholder="https://xxx.com">
-    </div>
-    <div class="apply-form-item">
-      <label>头像地址</label>
-      <input type="url" name="avatar" required placeholder="https://xxx.jpg">
-    </div>
-    <div class="apply-form-item">
-      <label>站点简介</label>
-      <textarea name="desc" rows="3" required placeholder="一句话介绍你的网站"></textarea>
-    </div>
-    <div class="apply-form-item">
-      <button type="submit" class="apply-btn">提交申请</button>
-    </div>
-  </form>
+<div id="container" style="overflow:hidden;">
+<iframe border="0" id="content" src="https://lk.z2m.store" frameborder="0" height="1500px" width="100%"></iframe>
 </div>
-
-<script>
-document.getElementById('friendApplyForm').addEventListener('submit',function(e){
-  e.preventDefault();
-  const data=new FormData(this);
-  const name=data.get('name');
-  const url=data.get('url');
-  const avatar=data.get('avatar');
-  const desc=data.get('desc');
-  const body=`
-昵称：${name}
-链接：${url}
-头像：${avatar}
-简介：${desc}
-`;
-  window.open(`https://github.com/yzg011/com/issues/new?title=友链申请-${name}&body=${encodeURIComponent(body)}`);
-})
-</script>
