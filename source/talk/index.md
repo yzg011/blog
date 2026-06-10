@@ -2,7 +2,7 @@
 title: 说说
 date: 2026-06-09 10:00:00
 layout: page
-comments: false
+comments: true
 ---
 
 <style>
