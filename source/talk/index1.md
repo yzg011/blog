@@ -2,7 +2,7 @@
 title: 说说
 date: 2026-06-09 10:00:00
 layout: page
-comments: false
+comments: true
 ---
 
 <style>
@@ -47,34 +47,30 @@ comments: false
 <script>
 // ========== 配置项 ==========
 const MEMOS_API = "https://ss.z2m.store/api/v1/memos";
-const LIMIT = 20; // 每页展示条数
+const FIX_LINK = "https://ss.z2m.store/explore";
+const LIMIT = 20;
 // ============================
 
 const listEl = document.getElementById('memosList');
 
-// 时间格式化（适配你的 createTime 格式）
 function formatTime(isoStr) {
   const d = new Date(isoStr);
   return `${d.getFullYear()}-${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getDate().toString().padStart(2,'0')} ${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}`;
 }
 
-// 渲染单条说说
 function renderItem(item) {
-  // 从 name 里提取 memo id，用于跳转详情页
-  const memoId = item.name.split('/')[1];
   const div = document.createElement('div');
   div.className = 'memos-item';
   div.innerHTML = `
     <div class="memos-content">${item.content}</div>
     <div class="memos-time">
       <span>${formatTime(item.createTime)}</span>
-      <a href="https://ss.z2m.store/m/${memoId}" target="_blank" rel="noopener">查看详情</a>
+      <a href="${FIX_LINK}" target="_blank" rel="noopener noreferrer nofollow">查看详情</a>
     </div>
   `;
   return div;
 }
 
-// 请求数据（适配你的 { memos: [] } 结构）
 async function getMemos() {
   try {
     const res = await fetch(`${MEMOS_API}?limit=${LIMIT}&sort=createTime&order=desc`, {
@@ -83,7 +79,6 @@ async function getMemos() {
     if (!res.ok) throw new Error(`请求失败，状态码：${res.status}`);
     
     const response = await res.json();
-    // 关键：确保 data 是数组
     const data = Array.isArray(response.memos) ? response.memos : [];
 
     listEl.innerHTML = '';
