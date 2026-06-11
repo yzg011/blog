@@ -1104,7 +1104,7 @@ inject:
      # - <link rel="stylesheet" href="/css/custom.css">
      - <link rel="stylesheet" href="/css/transpancy.css">
      - <link rel="stylesheet" href="/css/twikoo-talk.css">
-     - <link rel="stylesheet" href="/css/custom_bg.styl">
+     - <link rel="stylesheet" href="/css/custom_bg.css">
      # - <link rel="stylesheet" href="/css/theme_card.css">
      # - <script src="/js/baidu.js"></script>
   bottom:
