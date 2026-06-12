@@ -94,9 +94,12 @@ comments: true
   position: fixed;
   max-height: 100vh;
   inset: 0;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.8);
   z-index: 9999;
   overflow: auto;
+  align-items: center;
+  justify-content: center;
+  
 }
 .preview-img-wrapper {
   position: absolute;
@@ -249,4 +252,8 @@ if (!window.MemosInit) {
   startInit();
   document.addEventListener('pjax:end', startInit);
 }
+
+
+
+
 </script>
