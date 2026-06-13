@@ -25,8 +25,33 @@ comments: true
 .time{font-size:12px;color:var(--vp-c-text-2);}
 .memos-content{line-height:1.6;font-size:15px;margin-bottom:10px;word-break:break-word;color:var(--vp-c-text-1);}
 .img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-top:10px;}
-.img-grid img{width:100%;height:auto;object-fit:contain;border-radius:8px;cursor:pointer;transition:transform 0.2s ease;background:#f5f5f5;}
+.img-grid img{width:100%;height:auto;object-fit:contain;border-radius:8px;cursor:pointer;transition:transform 0.2s ease;background:#f5f5;}
 .img-grid img:hover{transform:scale(1.02);}
+
+/* 加载更多按钮样式 */
+.load-more-btn{
+  display:block;
+  width:180px;
+  height:40px;
+  line-height:40px;
+  text-align:center;
+  margin:1rem auto 2rem;
+  background:var(--vp-c-bg-soft);
+  border-radius:20px;
+  color:var(--vp-c-text-1);
+  cursor:pointer;
+  transition:all 0.2s;
+  border:none;
+  font-size:14px;
+}
+.load-more-btn:hover{
+  background:var(--vp-c-bg-mute);
+}
+.load-more-btn:disabled{
+  cursor:not-allowed;
+  color:var(--vp-c-text-3);
+  background:var(--vp-c-bg-alt);
+}
 
 /* 弹窗全局样式，最高优先级 */
 .img-preview {
@@ -60,6 +85,8 @@ comments: true
 <div class="memos-container" id="memosList">
   <div class="state-tips">加载中...</div>
 </div>
+<!-- 加载更多按钮 -->
+<button class="load-more-btn" id="loadMoreBtn" disabled>加载更多</button>
 
 <!-- 弹窗DOM -->
 <div class="img-preview" id="imgPreview">
@@ -70,32 +97,38 @@ comments: true
 
 <script>
 window.onload = function(){
-  const API = "https://ss.z2m.store/api/v1/memos?limit=20&sort=createTime&order=desc";
+  // 接口 & 分页配置
+  const API_BASE = "https://ss.z2m.store/api/v1/memos";
+  const PAGE_SIZE = 10;
+  let pageToken = "";
+  let hasMore = true;
+  let isLoading = false;
+
   const IMG_DOMAIN = "https://ss.z2m.store";
   const wrap = document.getElementById("memosList");
+  const loadMoreBtn = document.getElementById("loadMoreBtn");
   const previewBox = document.getElementById("imgPreview");
   const previewImg = document.getElementById("previewImg");
   const PIC = "https://com.z2m.store/img/butterfly-icon.png";
   let scrollTop = 0;
 
-  // 弹窗移动到根节点，避免样式嵌套问题
+  // 弹窗移到body根节点
   function movePreviewToBody(){
     document.body.appendChild(previewBox);
   }
 
-  // 打开预览
+  // 打开图片预览
   window.openImg = function(url){
     movePreviewToBody();
     scrollTop = window.scrollY;
     previewImg.src = url;
     previewBox.classList.add("show");
-    // 锁定页面防止跳顶
     document.documentElement.style.position = 'fixed';
     document.documentElement.style.top = `-${scrollTop}px`;
     document.documentElement.style.width = '100%';
   }
 
-  // 关闭预览
+  // 关闭图片预览
   function closePreview(){
     previewBox.classList.remove("show");
     document.documentElement.style.position = '';
@@ -103,9 +136,13 @@ window.onload = function(){
     window.scrollTo(0, scrollTop);
   }
 
-  // 关闭事件绑定
-  previewBox.addEventListener("click",e=>{if(e.target === previewBox) closePreview()});
-  document.addEventListener("keydown",e=>{if(e.key === "Escape") closePreview()});
+  // 关闭事件
+  previewBox.addEventListener("click", e => {
+    if(e.target === previewBox) closePreview();
+  });
+  document.addEventListener("keydown", e => {
+    if(e.key === "Escape") closePreview();
+  });
 
   // 时间格式化
   function formatTime(s){
@@ -116,7 +153,7 @@ window.onload = function(){
     return d.getFullYear()+"年"+pad(d.getMonth()+1)+"月"+pad(d.getDate())+"日 "+pad(d.getHours())+":"+pad(d.getMinutes())+":"+pad(d.getSeconds());
   }
 
-  // 生成内容图片（缩略图专用，防懒加载）
+  // 生成图片标签
   function createSafeImg(originUrl) {
     return `<img 
       src="${originUrl}" 
@@ -127,41 +164,70 @@ window.onload = function(){
     >`;
   }
 
-  // 请求数据
-  function loadData(){
+  // 拼接请求地址
+  function buildApiUrl(){
+    let url = `${API_BASE}?pageSize=${PAGE_SIZE}&sort=createTime&order=desc`;
+    if(pageToken){
+      url += `&pageToken=${encodeURIComponent(pageToken)}`;
+    }
+    return url;
+  }
+
+  // 加载数据
+  function loadData(isLoadMore = false){
+    if(isLoading || !hasMore) return;
+    isLoading = true;
+
+    if(!isLoadMore){
+      wrap.innerHTML = '<div class="state-tips">加载中...</div>';
+    }else{
+      loadMoreBtn.disabled = true;
+      loadMoreBtn.textContent = "加载中...";
+    }
+
     let xhr = new XMLHttpRequest();
     xhr.timeout = 8000;
-    xhr.open("GET",true);
+    xhr.open("GET", buildApiUrl(), true);
     xhr.setRequestHeader("Content-Type","application/json");
-    xhr.open("GET",API,true);
+
     xhr.onload = function(){
-      if(xhr.status >=200 && xhr.status <300){
+      isLoading = false;
+      if(xhr.status >= 200 && xhr.status < 300){
         let data = JSON.parse(xhr.responseText);
-        let arr = Array.isArray(data.memos) ? data.memos : [];
-        if(arr.length === 0){
-          wrap.innerHTML = '<div class="state-tips">暂无说说</div>';
+        let list = Array.isArray(data.memos) ? data.memos : [];
+        let nextToken = data.nextPageToken || "";
+        hasMore = !!nextToken;
+        pageToken = nextToken;
+
+        if(list.length === 0){
+          if(!isLoadMore){
+            wrap.innerHTML = '<div class="state-tips">暂无说说</div>';
+          }
+          loadMoreBtn.disabled = true;
+          loadMoreBtn.textContent = "没有更多了";
           return;
         }
+
         let html = "";
-        for(let i=0;i<arr.length;i++){
-          let item = arr[i];
+        for(let i = 0; i < list.length; i++){
+          let item = list[i];
           let content = item.content || "";
           let imgHtml = "";
           if(Array.isArray(item.attachments) && item.attachments.length){
             imgHtml = '<div class="img-grid">';
-            item.attachments.forEach(att=>{
+            item.attachments.forEach(att => {
               if(att.type && att.type.startsWith("image/")){
                 let imgUrl = IMG_DOMAIN + "/file/attachments/" + att.uid + "/" + att.filename;
                 imgHtml += createSafeImg(imgUrl);
               }
-            })
+            });
             imgHtml += "</div>";
           }
-          // 头像标签：强制立即加载 + 禁用懒加载属性，根治loading2.gif
+
           html += `
             <div class="memos-item">
               <div class="avatar-wrap">
-                <img src=${PIC} loading="eager" data-no-lazy="1">
+                <img src=${PIC} loading="eager" data-no-lazy>
               </div>
               <div class="memos-content-wrap">
                 <div class="user-header">
@@ -174,30 +240,67 @@ window.onload = function(){
             </div>
           `;
         }
-        wrap.innerHTML = html;
 
-        // 全局兜底：清理页面所有图片的懒加载属性
+        if(isLoadMore){
+          wrap.insertAdjacentHTML('beforeend', html);
+        }else{
+          wrap.innerHTML = html;
+        }
+
+        loadMoreBtn.disabled = !hasMore;
+        loadMoreBtn.textContent = hasMore ? "加载更多" : "没有更多了";
+
+        // 清理懒加载残留
         setTimeout(() => {
           const allImg = document.querySelectorAll('img');
           allImg.forEach(img => {
             img.classList.remove('lazy');
             img.removeAttribute('data-lazy');
             img.removeAttribute('data-src');
-            // 如果头像/图片被替换为loading2.gif，强制还原原地址
             if(img.src.includes("loading2.gif") && img.dataset.noLazy){
               img.src = img.getAttribute('src');
             }
           });
         }, 150);
-        
+
       }else{
-        wrap.innerHTML = '<div class="state-tips">请求失败</div>';
+        loadMoreBtn.disabled = false;
+        loadMoreBtn.textContent = "加载更多";
+        if(!isLoadMore){
+          wrap.innerHTML = '<div class="state-tips">请求失败</div>';
+        }
       }
     };
-    xhr.onerror = ()=> wrap.innerHTML = '<div class="state-tips">跨域/网络异常</div>';
-    xhr.ontimeout = ()=> wrap.innerHTML = '<div class="state-tips">请求超时</div>';
+
+    xhr.onerror = function(){
+      isLoading = false;
+      loadMoreBtn.disabled = false;
+      loadMoreBtn.textContent = "加载更多";
+      if(!isLoadMore){
+        wrap.innerHTML = '<div class="state-tips">跨域/网络异常</div>';
+      }
+    };
+
+    xhr.ontimeout = function(){
+      isLoading = false;
+      loadMoreBtn.disabled = false;
+      loadMoreBtn.textContent = "加载更多";
+      if(!isLoadMore){
+        wrap.innerHTML = '<div class="state-tips">请求超时</div>';
+      }
+    };
+
     xhr.send();
   }
-  setTimeout(loadData,100);
+
+  // 绑定点击事件（修复 loadMore 未定义）
+  loadMoreBtn.addEventListener('click', () => {
+    loadData(true);
+  });
+
+  // 初始加载
+  setTimeout(() => {
+    loadData(false);
+  }, 100);
 };
 </script>
