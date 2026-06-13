@@ -144,6 +144,8 @@ window.onload = function(){
       loading="eager" 
       alt="说说图片" 
       data-no-lazy="1"
+      data-zoom="false"
+      data-fancybox="ignore"
     >`;
   }
 
