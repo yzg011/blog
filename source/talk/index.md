@@ -36,33 +36,6 @@ comments: false
   font-size: 14px;
 }
 
-/* 弹窗全局样式，最高优先级 */
-.img-preview {
-  position: fixed !important;
-  left: 0 !important;
-  top: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  background: rgba(0,0,0.85) !important;
-  z-index: 99999 !important;
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-.img-preview.show {
-  display: flex !important;
-}
-.preview-img-wrapper {
-  width: 90%;
-  max-width: 800px;
-  text-align: center;
-}
-.preview-img-wrapper img {
-  max-width: 100%;
-  max-height: 92vh;
-  border-radius: 8px;
-  object-fit: contain;
-}
 </style>
 
 <div class="memos-container" id="memosList">
@@ -70,13 +43,6 @@ comments: false
 </div>
 <!-- 底部加载提示 -->
 <div class="load-tips" id="loadTips">加载中...</div>
-
-<!-- 弹窗DOM -->
-<div class="img-preview" id="imgPreview">
-  <div class="preview-img-wrapper">
-    <img id="previewImg" alt="大图预览">
-  </div>
-</div>
 
 <script>
 window.onload = function(){
@@ -90,42 +56,48 @@ window.onload = function(){
   const IMG_DOMAIN = "https://ss.z2m.store";
   const wrap = document.getElementById("memosList");
   const loadTips = document.getElementById("loadTips");
-  const previewBox = document.getElementById("imgPreview");
-  const previewImg = document.getElementById("previewImg");
   const PIC = "https://com.z2m.store/img/butterfly-icon.png";
-  let scrollTop = 0;
 
-  // 弹窗移到body根节点，修复定位
-  function movePreviewToBody(){
-    document.body.appendChild(previewBox);
+  // 延迟加载 Fancybox 库
+  let Fancybox = null;
+  async function ensureFancybox() {
+    if (Fancybox) return Fancybox;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@6/dist/fancybox/fancybox.css';
+    document.head.appendChild(link);
+    await new Promise(resolve => {
+      const s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@6/dist/fancybox/fancybox.umd.js';
+      s.onload = resolve;
+      document.body.appendChild(s);
+    });
+    Fancybox = window.Fancybox;
+    return Fancybox;
   }
 
-  // 打开图片预览
-  window.openImg = function(url){
-    movePreviewToBody();
-    scrollTop = window.scrollY;
-    previewImg.src = url;
-    previewBox.classList.add("show");
-    document.documentElement.style.position = 'fixed';
-    document.documentElement.style.top = `-${scrollTop}px`;
-    document.documentElement.style.width = '100%';
+  // 绑定 Fancybox 到说说图片
+  async function bindFancybox() {
+    const fb = await ensureFancybox();
+    fb.bind('[data-fancybox="shuoshuo-gallery"]', {
+      dragToClose: true,
+      animated: true,
+      keyboard: {
+        Escape: 'close',
+        Delete: 'close',
+        Backspace: 'close',
+      },
+      Toolbar: {
+        display: {
+          left: ['infobar'],
+          middle: ['zoomIn', 'zoomOut', 'toggle1to1', 'rotateCCW', 'rotateCW', 'flipX', 'flipY'],
+          right: ['close'],
+        },
+      },
+      Carousel: { transition: 'slide' },
+      Panzoom: { maxScale: 3, minScale: 1 },
+    });
   }
-
-  // 关闭图片预览
-  function closePreview(){
-    previewBox.classList.remove("show");
-    document.documentElement.style.position = '';
-    document.documentElement.style.top = '';
-    window.scrollTo(0, scrollTop);
-  }
-
-  // 关闭事件
-  previewBox.addEventListener("click", e => {
-    if(e.target === previewBox) closePreview();
-  });
-  document.addEventListener("keydown", e => {
-    if(e.key === "Escape") closePreview();
-  });
 
   // 时间格式化
   function formatTime(s){
@@ -136,15 +108,14 @@ window.onload = function(){
     return d.getFullYear()+"年"+pad(d.getMonth()+1)+"月"+pad(d.getDate())+"日 "+pad(d.getHours())+":"+pad(d.getMinutes())+":"+pad(d.getSeconds());
   }
 
-  // 生成图片标签
+  // 生成图片标签（使用 Fancybox 预览）
   function createSafeImg(originUrl) {
     return `<img 
       src="${originUrl}" 
-      onclick="openImg('${originUrl}')" 
+      data-fancybox="shuoshuo-gallery" 
       loading="eager" 
       alt="说说图片" 
       data-no-lazy="1"
-     
     >`;
   }
 
@@ -231,6 +202,9 @@ window.onload = function(){
         }else{
           wrap.innerHTML = html;
         }
+
+        // 绑定 Fancybox 到新加载的图片
+        bindFancybox();
 
         // 更新底部提示
         loadTips.textContent = hasMore ? "上拉加载更多" : "没有更多了";
