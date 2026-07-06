@@ -23,14 +23,15 @@ menu:
     分类: /categories/ || fa fa-archive
     标签: /tags/ || fa fa-tags
     归档: /archives/ || fa fa-folder-open
+  说说: /talk/ || fas fa-comment-dots
   其他 || fas fa-list:
     友链: /friends/ || fa fa-link
-    说说: /talk/ || fas fa-comment-dots
     相册: /album/ || fa fa-camera-retro
     # 音乐: /music/ || fa fa-music
     # 影视: /movies/ || fas fa-video
-  进入: https://blog.z2m.store/ || fa fa-paper-plane
+  碎碎念: /ssl/ || fas fa-comment-dots
   朋友圈: /comment/ || fas fa-comment-dots
+  个人导航页: /dh/ || fas fa-home
   关于: /about/ || fas fa-heart  
 
 
