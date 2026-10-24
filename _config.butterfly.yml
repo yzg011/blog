@@ -605,18 +605,7 @@ gitalk:
   admin:
   option:
 
-# Valine
-# https://valine.js.org
-valine:
-  appId:
-  appKey:
-  avatar: monsterid
-  # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
-  serverURLs:
-  bg:
-  # Use Valine visitor count as the page view count
-  visitor: false
-  option:
+
 
 # Waline - A simple comment system with backend support fork from Valine
 # https://waline.js.org/
@@ -624,7 +613,7 @@ waline:
   serverURL: https://yu.y00.cc.cd
   bg:
   # Use Waline pageview count as the page view count
-  pageview: false
+  pageview: true
   option:
 
 # Utterances
