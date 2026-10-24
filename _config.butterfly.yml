@@ -509,7 +509,7 @@ math:
 search:
   # Choose: algolia_search / local_search / docsearch
   # leave it empty if you don't need search
-  use: algolia_search 
+  use: local_search
   placeholder:
 
 # Search（必须加，否则不生成索引文件）
@@ -523,14 +523,6 @@ local_search:
 
 
 
-algolia_search:
-  enable: true
-  hits:
-    per_page: 10
-  labels:
-    input_placeholder: Search for Posts
-    hits_empty: "我们没有找到任何搜索结果: ${query}"
-    hits_stats: "找到${hits}条结果（用时${time} ms）"
 
 
 # --------------------------------------
@@ -1140,7 +1132,7 @@ CDN:
     # abcjs_basic_js:
     # activate_power_mode:
     # algolia_js:
-    algolia_search:
+    #    algolia_search:
     # aplayer_css:
     # aplayer_js:
     # artalk_css:
