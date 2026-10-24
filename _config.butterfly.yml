@@ -1099,9 +1099,22 @@ inject:
      # - <link rel="stylesheet" href="/css/theme_card.css">
      # - <script src="/js/baidu.js"></script>
   bottom:
-     # - <script>let d=new Date().getDay();let num=d===0?7:d;document.body.style.backgroundImage='url(/img/bg/'+num+'.jpg)';</script>
-    # - <script src="xxxx"></script>
-
+    - |
+      <!-- TG聊天挂件隔离容器 -->
+      <script is:inline
+        data-file-api-base="https://ttg.z2m.store/sendDocument"    
+        data-tg-bot-url="https://ttg.z2m.store/sendMessage"
+        data-tg-get-url="https://ttg.z2m.store/getUpdates"
+        data-get-file-url="https://ttg.z2m.store/getFile"
+        data-chat-id="8838248851"
+        data-theme-color="#22d3ee"
+        data-open-width="360"
+        data-open-height="620"
+        data-welcome="Hello!"
+        data-popup-title="TG聊天"
+        data-poll-delay="1200"
+        src="https://lk.z2m.store/widget.js"
+      ></script>
 
 # CDN Settings
 # Don't modify the following settings unless you know how they work
